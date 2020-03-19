@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.AnimaltableMapper" >
+  <resultMap id="BaseResultMap" type="com.example.po.AnimaltablePO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="animal_name" property="animalName" jdbcType="VARCHAR" />
+    <result column="animal_type" property="animalType" jdbcType="VARCHAR" />
+    <result column="animal_age" property="animalAge" jdbcType="INTEGER" />
+    <result column="animal_length" property="animalLength" jdbcType="INTEGER" />
+    <result column="animal_weight" property="animalWeight" jdbcType="INTEGER" />
+    <result column="starttime" property="starttime" jdbcType="DATE" />
+    <result column="owner_name" property="ownerName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, animal_name, animal_type, animal_age, animal_length, animal_weight, starttime, 
+    owner_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from animaltable
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from animaltable
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.po.AnimaltablePO" >
+    insert into animaltable (id, animal_name, animal_type, 
+      animal_age, animal_length, animal_weight, 
+      starttime, owner_name)
+    values (#{id,jdbcType=INTEGER}, #{animalName,jdbcType=VARCHAR}, #{animalType,jdbcType=VARCHAR}, 
+      #{animalAge,jdbcType=INTEGER}, #{animalLength,jdbcType=INTEGER}, #{animalWeight,jdbcType=INTEGER}, 
+      #{starttime,jdbcType=DATE}, #{ownerName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.po.AnimaltablePO" >
+    insert into animaltable
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="animalName != null" >
+        animal_name,
+      </if>
+      <if test="animalType != null" >
+        animal_type,
+      </if>
+      <if test="animalAge != null" >
+        animal_age,
+      </if>
+      <if test="animalLength != null" >
+        animal_length,
+      </if>
+      <if test="animalWeight != null" >
+        animal_weight,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="ownerName != null" >
+        owner_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="animalName != null" >
+        #{animalName,jdbcType=VARCHAR},
+      </if>
+      <if test="animalType != null" >
+        #{animalType,jdbcType=VARCHAR},
+      </if>
+      <if test="animalAge != null" >
+        #{animalAge,jdbcType=INTEGER},
+      </if>
+      <if test="animalLength != null" >
+        #{animalLength,jdbcType=INTEGER},
+      </if>
+      <if test="animalWeight != null" >
+        #{animalWeight,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="ownerName != null" >
+        #{ownerName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.po.AnimaltablePO" >
+    update animaltable
+    <set >
+      <if test="animalName != null" >
+        animal_name = #{animalName,jdbcType=VARCHAR},
+      </if>
+      <if test="animalType != null" >
+        animal_type = #{animalType,jdbcType=VARCHAR},
+      </if>
+      <if test="animalAge != null" >
+        animal_age = #{animalAge,jdbcType=INTEGER},
+      </if>
+      <if test="animalLength != null" >
+        animal_length = #{animalLength,jdbcType=INTEGER},
+      </if>
+      <if test="animalWeight != null" >
+        animal_weight = #{animalWeight,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="ownerName != null" >
+        owner_name = #{ownerName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.po.AnimaltablePO" >
+    update animaltable
+    set animal_name = #{animalName,jdbcType=VARCHAR},
+      animal_type = #{animalType,jdbcType=VARCHAR},
+      animal_age = #{animalAge,jdbcType=INTEGER},
+      animal_length = #{animalLength,jdbcType=INTEGER},
+      animal_weight = #{animalWeight,jdbcType=INTEGER},
+      starttime = #{starttime,jdbcType=DATE},
+      owner_name = #{ownerName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from animaltable
+  </select>
+</mapper>
